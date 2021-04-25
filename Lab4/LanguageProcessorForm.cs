@@ -203,15 +203,6 @@ namespace Lab4
             StaticData.commands.CommandCheck();
         }
 
-        private void TaskStatesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Help.ShowHelp(null, "../../task/states.html");
-        }
-
-        private void TaskTransitionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Help.ShowHelp(null, "../../task/transitions.html");
-        }
     }
 
 
