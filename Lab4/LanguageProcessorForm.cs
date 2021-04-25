@@ -200,9 +200,39 @@ namespace Lab4
 
         private void ToolStripPlay_Click(object sender, EventArgs e)
         {
-            StaticData.commands.CommandCheck();
+            if (StaticData.usingMyRegex == false)
+            {
+                if (StaticData.rx == null)
+                {
+                    MessageBox.Show("Не задано регулярное выражение! Выберите в верхнем меню нужный шаблон");
+                }
+            }
+            else
+            {
+                StaticData.commands.CommandCheck();
+            }
         }
 
+        private void RegEx1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //StaticData.rx = new System.Text.RegularExpressions.Regex(StaticData.pattern1);
+            StaticData.usingMyRegex = true;
+            RegexStatusToolStripLabel.Text = "Выбрано регулярное выражение: 1";
+        }
+
+        private void RegEx2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StaticData.rx = new System.Text.RegularExpressions.Regex(StaticData.pattern2);
+            StaticData.usingMyRegex = false;
+            RegexStatusToolStripLabel.Text = "Выбрано регулярное выражение: 2";
+        }
+
+        private void RegEx3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StaticData.rx = new System.Text.RegularExpressions.Regex(StaticData.pattern3);
+            StaticData.usingMyRegex = false;
+            RegexStatusToolStripLabel.Text = "Выбрано регулярное выражение: 3";
+        }
     }
 
 

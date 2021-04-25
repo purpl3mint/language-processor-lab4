@@ -77,6 +77,14 @@
             this.StatusStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStripCreate = new System.Windows.Forms.ToolStripButton();
+            this.RegExToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegExTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegExChooseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegEx1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegEx2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegEx3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.RegexStatusToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -93,7 +101,8 @@
             this.StripMenuEdit,
             this.текстToolStripMenuItem,
             this.пускToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.справкаToolStripMenuItem,
+            this.RegExToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -313,14 +322,14 @@
             this.StripMenuHelp.Name = "StripMenuHelp";
             this.StripMenuHelp.ShortcutKeyDisplayString = "F1";
             this.StripMenuHelp.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.StripMenuHelp.Size = new System.Drawing.Size(175, 22);
+            this.StripMenuHelp.Size = new System.Drawing.Size(180, 22);
             this.StripMenuHelp.Text = "Вызов справки";
             this.StripMenuHelp.Click += new System.EventHandler(this.StripMenuHelp_Click);
             // 
             // StripMenuAbout
             // 
             this.StripMenuAbout.Name = "StripMenuAbout";
-            this.StripMenuAbout.Size = new System.Drawing.Size(175, 22);
+            this.StripMenuAbout.Size = new System.Drawing.Size(180, 22);
             this.StripMenuAbout.Text = "О программе";
             this.StripMenuAbout.Click += new System.EventHandler(this.StripMenuAbout_Click);
             // 
@@ -488,7 +497,9 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.toolStripSeparator4,
-            this.StatusStripLabel1});
+            this.StatusStripLabel1,
+            this.toolStripSeparator5,
+            this.RegexStatusToolStripLabel});
             this.toolStrip2.Location = new System.Drawing.Point(0, 436);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(800, 25);
@@ -541,6 +552,63 @@
             this.toolStripCreate.Size = new System.Drawing.Size(28, 28);
             this.toolStripCreate.Text = "Create";
             this.toolStripCreate.Click += new System.EventHandler(this.toolStripCreate_Click);
+            // 
+            // RegExToolStripMenuItem
+            // 
+            this.RegExToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RegExTaskToolStripMenuItem,
+            this.RegExChooseToolStripMenuItem});
+            this.RegExToolStripMenuItem.Name = "RegExToolStripMenuItem";
+            this.RegExToolStripMenuItem.Size = new System.Drawing.Size(151, 20);
+            this.RegExToolStripMenuItem.Text = "Регулярные выражения";
+            // 
+            // RegExTaskToolStripMenuItem
+            // 
+            this.RegExTaskToolStripMenuItem.Name = "RegExTaskToolStripMenuItem";
+            this.RegExTaskToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RegExTaskToolStripMenuItem.Text = "Задание";
+            // 
+            // RegExChooseToolStripMenuItem
+            // 
+            this.RegExChooseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RegEx1ToolStripMenuItem,
+            this.RegEx2ToolStripMenuItem,
+            this.RegEx3ToolStripMenuItem});
+            this.RegExChooseToolStripMenuItem.Name = "RegExChooseToolStripMenuItem";
+            this.RegExChooseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RegExChooseToolStripMenuItem.Text = "Выбор выражения";
+            // 
+            // RegEx1ToolStripMenuItem
+            // 
+            this.RegEx1ToolStripMenuItem.Name = "RegEx1ToolStripMenuItem";
+            this.RegEx1ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.RegEx1ToolStripMenuItem.Text = "0(0|1)*0";
+            this.RegEx1ToolStripMenuItem.Click += new System.EventHandler(this.RegEx1ToolStripMenuItem_Click);
+            // 
+            // RegEx2ToolStripMenuItem
+            // 
+            this.RegEx2ToolStripMenuItem.Name = "RegEx2ToolStripMenuItem";
+            this.RegEx2ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.RegEx2ToolStripMenuItem.Text = "R4R1*R3";
+            this.RegEx2ToolStripMenuItem.Click += new System.EventHandler(this.RegEx2ToolStripMenuItem_Click);
+            // 
+            // RegEx3ToolStripMenuItem
+            // 
+            this.RegEx3ToolStripMenuItem.Name = "RegEx3ToolStripMenuItem";
+            this.RegEx3ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.RegEx3ToolStripMenuItem.Text = "Номера телефонов";
+            this.RegEx3ToolStripMenuItem.Click += new System.EventHandler(this.RegEx3ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // RegexStatusToolStripLabel
+            // 
+            this.RegexStatusToolStripLabel.Name = "RegexStatusToolStripLabel";
+            this.RegexStatusToolStripLabel.Size = new System.Drawing.Size(204, 22);
+            this.RegexStatusToolStripLabel.Text = "Выбрано регулярное выражение: - ";
             // 
             // LanguageProcessorForm
             // 
@@ -624,6 +692,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel StatusStripLabel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripMenuItem RegExToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegExTaskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegExChooseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegEx1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegEx2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegEx3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripLabel RegexStatusToolStripLabel;
     }
 }
 

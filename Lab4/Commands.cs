@@ -4,87 +4,72 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Lab4
 {
     public class Commands
     {
-        private int checkExpression(string source)
+        MatchCollection checkExpression(string source)
         {
+            MatchCollection matches;
+
+            matches = StaticData.rx.Matches(source);
             
-            int state = 1;
-            int position = 1;
+            return matches;
+        }
 
-            foreach (char symbol in source)
+        void checkMyRegEx(string line, ref List<string> matches, ref List<int> positions)
+        {
+            int state = 0;
+            int currentPosition = -1;
+
+            for(int i = 0; i < line.Length; i++)
             {
-                switch (state)
+                if (state == 0 && line[i] == '0')
                 {
-                    case 1:
-                        {
-                            if (symbol == '0')
-                                state = 2;
-                            else
-                                return position;
-                            break;
-                        }
-                    case 2:
-                        {
-                            if (symbol == '1')
-                                state = 3;
-                            else
-                                return position;
-                            break;
-                        }
-                    case 3:
-                        {
-                            if (symbol == '1')
-                                state = 4;
-                            else if (symbol == '2')
-                                state = 7;
-                            else if (symbol == '3')
-                                state = 6;
-                            else
-                                return position;
-                            break;
-                        }
-                    case 4:
-                        {
-                            if (symbol == '2')
-                                state = 5;
-                            else
-                                return position;
-                            break;
-                        }
-                    case 5:
-                        {
-                            if (symbol == '1')
-                                state = 4;
-                            else if (symbol == '3')
-                                state = 6;
-                            else
-                                return position;
-                            break;
-                        }
-                    case 6:
-                        {
-                            if (symbol == '2')
-                                state = 6;
-                            else
-                                return position;
-                            break;
-                        }
-                    default: return -2;
+                    state = 1;
+                    currentPosition = i;
                 }
-
-                position++;
+                else if((state == 1 || state == 2) && line[i] == '1')
+                {
+                    state = 2;
+                }
+                else if (state == 1 && line[i] == '0')
+                {
+                    state = 3;
+                }
+                else if (state == 3 && line[i] == '0')
+                {
+                    state = 3;
+                }
+                else if (state == 2 && line[i] == '0')
+                {
+                    state = 4;
+                }
+                else if ((state == 3 && line[i] != '0') || state == 4)
+                {
+                    matches.Add(line.Substring(currentPosition, i - currentPosition));
+                    positions.Add(currentPosition);
+                    state = 0;
+                    currentPosition = -1;
+                    i--;
+                }
+                else
+                {
+                    state = 0;
+                    currentPosition = -1;
+                    i--;
+                }
             }
 
-            if (state == 6 || state == 7)
+            
+            if (state == 3 || state == 4)
             {
-                return -1;
+                matches.Add(line.Substring(currentPosition, line.Length - currentPosition));
+                positions.Add(currentPosition);
             }
-
-            return position;
+            
         }
 
         public void CommandCreate()
@@ -223,20 +208,41 @@ namespace Lab4
 
             StaticData.mainForm.ResultsTextBox.Text = "";
 
-            for (int i = 0; i < strings.Length; i++)
+            if (!StaticData.usingMyRegex)
             {
-                int lineStatus = checkExpression(strings[i]);
-                if (lineStatus == -1)
+                for (int i = 0; i < strings.Length; i++)
                 {
-                    StaticData.mainForm.ResultsTextBox.Text += "Line " + (i + 1) + ": CORRECT" + Environment.NewLine;
+                    MatchCollection matches = checkExpression(strings[i]);
+                    if (matches.Count >= 1)
+                    {
+                        foreach (Match match in matches)
+                            StaticData.mainForm.ResultsTextBox.Text += "Строка " + (i + 1) + ": найдена подстрока " + match.Value + ", начало с " + match.Index + " символа" + Environment.NewLine;
+                    }
+                    else if (matches.Count == 0)
+                    {
+                        StaticData.mainForm.ResultsTextBox.Text += "Строка " + (i + 1) + ": подстрок нет" + Environment.NewLine;
+                    }
                 }
-                else if (lineStatus == -2)
+            }
+            else
+            {
+                for(int i = 0; i < strings.Length; i++)
                 {
-                    StaticData.mainForm.ResultsTextBox.Text += "Line " + (i + 1) + ": PROCESSING ERROR, very big expression" + Environment.NewLine;
-                }
-                else
-                {
-                    StaticData.mainForm.ResultsTextBox.Text += "Line " + (i + 1) + ": SYNTAX ERROR, wrong command at position " + lineStatus + Environment.NewLine;
+                    List<string> matches = new List<string>();
+                    List<int> positions = new List<int>();
+                    checkMyRegEx(strings[i], ref matches, ref positions);
+
+                    if (matches.Count > 0)
+                    {
+                        for (int j = 0; i < matches.Count; i++)
+                        {
+                            StaticData.mainForm.ResultsTextBox.Text += "Строка " + (i + 1) + ": найдена подстрока " + matches[i] + ", начало с " + positions[i] + " символа" + Environment.NewLine;
+                        }
+                    }
+                    else
+                    {
+                        StaticData.mainForm.ResultsTextBox.Text += "Строка " + (i + 1) + ": подстрок нет" + Environment.NewLine;
+                    }
                 }
             }
 

@@ -105,13 +105,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="heeelp\file.png" />
-    <Content Include="heeelp\help1.html" />
-    <Content Include="heeelp\panel.png" />
-    <Content Include="heeelp\pravka.png" />
-    <Content Include="heeelp\spravka.png" />
-    <Content Include="heeelp\start.png" />
-    <Content Include="heeelp\text.png" />
+    <Content Include="help\file.png" />
+    <Content Include="help\help1.html" />
+    <Content Include="help\panel.png" />
+    <Content Include="help\pravka.png" />
+    <Content Include="help\spravka.png" />
+    <Content Include="help\start.png" />
+    <Content Include="help\text.png" />
     <Content Include="icons\ahead_forward_arrow_icon_179127.png" />
     <Content Include="icons\back_arrow_undo_icon_179126.png" />
     <Content Include="icons\copy.png" />
