@@ -51,7 +51,7 @@
             Для определения номеров телефона из России с кодами как для мобильных телефонов,<br>
             так и для стационарных нужно использовать следующее регулярное выражение:<br><br>
             <span style="color: darkgreen; font-family: Consolas, sans-serif;background-color: lightgreen;">
-            /^((8|\+7)[\- ]?)?\(?\d{3,5}\)?[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}(([\- ]?\d{1})?[\- ]?\d{1})?$/<br><br>
+            /((8|\+7)[\- ]?)?\(?\d{3,5}\)?[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}(([\- ]?\d{1})?[\- ]?\d{1})?/<br><br>
             </span>
             Данное регулярное выражение способно различить номера телефонов с разделителями кода в виде скобок или без них,<br>
             а также номера телефонов и с дефисами, и без них.
@@ -73,6 +73,20 @@
             R<sub>4</sub>R<sub>1</sub><sup>*</sup>R<sub>3</sub>| 
             R<sub>4</sub>R<sub>3</sub> = 
             R<sub>4</sub>R<sub>1</sub><sup>*</sup>R<sub>3</sub>, что и требовалось доказать.
+        </p>
+        <p>
+            Для реализации в программе в качестве частного случая можно рассмотреть следующие значения для R:<br>
+            R<sub>1</sub> = ab<br>
+            R<sub>3</sub> = 0<sup>+</sup><br>
+            R<sub>4</sub> = (cd)<sup>*</sup><br><br>
+            Тогда регулярное выражение для заданной последовательности R примет следующий вид:<br>
+            <span style="color: darkgreen; font-family: Consolas, sans-serif;background-color: lightgreen;">
+                /(cd)<sup>*</sup>(ab)<sup>*</sup>0<sup>+</sup>/<br><br>
+            </span>
+            или<br><br>
+            <span style="color: darkgreen; font-family: Consolas, sans-serif;background-color: lightgreen;">
+                /(cd){0,}(ab){0,}0{1,}/<br><br>
+            </span>
         </p>
 
         <span><b>Задача 10:</b></span>

@@ -10,7 +10,7 @@ namespace Lab4
     public static class StaticData
     {
         //public static string pattern1 = @"0?01{0,}0";
-        public static string pattern2 = @"\\S*(\\S*)*\\S*";
+        public static string pattern2 = @"(cd)*(ab)*0+";
         public static string pattern3 = @"((8|\+7)[\-]?)?\(?\d{3,5}\)?[\-]?\d{1}[\-]?\d{1}[\-]?\d{1}[\-]?\d{1}[\-]?\d{1}(([\-]?\d{1})?[\-]?\d{1})?";
         public static Regex rx;
         public static bool usingMyRegex;

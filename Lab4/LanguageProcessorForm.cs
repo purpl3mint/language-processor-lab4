@@ -200,14 +200,11 @@ namespace Lab4
 
         private void ToolStripPlay_Click(object sender, EventArgs e)
         {
-            if (StaticData.usingMyRegex == false)
+            if (StaticData.usingMyRegex == false && StaticData.rx == null)
             {
-                if (StaticData.rx == null)
-                {
-                    MessageBox.Show("Не задано регулярное выражение! Выберите в верхнем меню нужный шаблон");
-                }
+                MessageBox.Show("Не задано регулярное выражение! Выберите в верхнем меню нужный шаблон");
             }
-            else
+            else 
             {
                 StaticData.commands.CommandCheck();
             }
